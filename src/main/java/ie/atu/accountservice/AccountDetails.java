@@ -15,8 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class AccountDetails {
     @Id
     private String accountID;
-
-    // Field to specify the type of account (e.g, Loan, Savings
+    // Field to specify the type of account (e.g, Loan, Savings)
     private String accountType;
 
 
