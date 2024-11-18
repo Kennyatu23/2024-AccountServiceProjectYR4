@@ -16,7 +16,10 @@ public class AccountService {
     private List<AccountDetails> accountDetailsList = new ArrayList<>();
 
     // Creating constructor,injection of database into this class
+
+    @Autowired
     public AccountService(AccountDatabase accountDatabase) {
+
         this.accountDatabase = accountDatabase;
     }
     public List<AccountDetails> createAccount(AccountDetails accountDetails) {
