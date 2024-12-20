@@ -32,10 +32,10 @@ public class AccountController {
         return ResponseEntity.ok(accountDetailsList);
     }
 
-    @PostMapping("/ConfirmMessage")
-    public String accountConfirm(@RequestBody AccountDetails accountDetails) {
-        String confirmMessage = String.format("Recieved details for Account ID: %d  Account Holder Name: %s  AccountType: %s",
-                accountDetails.getAccountID(), accountDetails.getAccountName(), accountDetails.getAccountType());
+    @PostMapping("/accountsRegister")
+    public String accountConfirm(@RequestBody Person person) {
+        String confirmMessage = String.format("Received details for Account Holder Name: %s  Email: %s  AccountType: %s",
+                 person.getName(), person.getEmail(), person.getAccountType());
         return confirmMessage;
     }
 

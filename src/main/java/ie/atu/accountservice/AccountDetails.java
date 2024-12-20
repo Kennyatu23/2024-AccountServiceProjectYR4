@@ -16,12 +16,14 @@ import org.springframework.stereotype.Component;
 
 // account fields
 public class AccountDetails {
+
     @Id
     private String accountID;
+    @NotBlank(message = "Name must not be blank please")
     private String accountName;
 
     // Field to specify the type of account (e.g, Loan, Savings)
-    @NotBlank(message = "Field must not be blank")
+    @NotBlank(message = "Account Type must not be blank")
     private String accountType;
 
 
