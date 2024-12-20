@@ -14,9 +14,12 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @AllArgsConstructor
 
+// account fields
 public class AccountDetails {
     @Id
     private String accountID;
+    private String accountName;
+
     // Field to specify the type of account (e.g, Loan, Savings)
     @NotBlank(message = "Field must not be blank")
     private String accountType;
