@@ -31,6 +31,14 @@ public class AccountController {
         accountDetailsList = accountService.createAccount(accountDetails);
         return ResponseEntity.ok(accountDetailsList);
     }
+
+    @PostMapping("/ConfirmMessage")
+    public String accountConfirm(@RequestBody AccountDetails accountDetails) {
+        String confirmMessage = String.format("Recieved details for Account ID: %d  Account Holder Name: %s  AccountType: %s",
+                accountDetails.getAccountID(), accountDetails.getAccountName(), accountDetails.getAccountType());
+        return confirmMessage;
+    }
+
     @PutMapping("/{id}")
       public  ResponseEntity<List<AccountDetails>>upDateAccount(@PathVariable String id, @RequestBody AccountDetails NewAccountDetails) {
         accountDetailsList = accountService.upDateAccount(id, NewAccountDetails);
