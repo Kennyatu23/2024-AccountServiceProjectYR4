@@ -19,10 +19,12 @@ public class AccountController {
     private  AccountDatabase accountDatabase;
     private List<AccountDetails> accountDetailsList = new ArrayList<>();
     private AccountService accountService;
+    private PaymentServiceClient paymentServiceClient;
 
-    public AccountController(AccountService accountService, AccountDatabase accountDatabase) {
+    public AccountController(AccountService accountService, AccountDatabase accountDatabase, PaymentServiceClient paymentServiceClient) {
         this.accountService = accountService;
         this.accountDatabase = accountDatabase;
+        this.paymentServiceClient = paymentServiceClient;
     }
 
 
@@ -63,6 +65,12 @@ public class AccountController {
     }
 
 
+    //Get balance from Payment Service
+    @PostMapping("/balance-notification")
+    public String notifyBalance(@RequestBody AccountDetails accountDetails){
+        String balance = paymentServiceClient.getBalance(accountDetails);
+        return balance;
+    }
 
 
 }
