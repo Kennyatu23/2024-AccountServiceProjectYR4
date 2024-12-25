@@ -1,6 +1,7 @@
 package ie.atu.accountservice;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,8 @@ public class AccountDetails {
     // Field to specify the type of account (e.g, Loan, Savings)
     @NotBlank(message = "Account Type must not be blank")
     private String accountType;
+    @NotNull(message = "Balance cannot be null")
+    private Double accountBalance;
 
 
 }
