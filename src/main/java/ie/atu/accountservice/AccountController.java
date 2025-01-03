@@ -2,6 +2,7 @@ package ie.atu.accountservice;
 
 
 import jakarta.validation.Valid;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
@@ -21,10 +22,14 @@ public class AccountController {
     private AccountService accountService;
     private PaymentServiceClient paymentServiceClient;
 
-    public AccountController(AccountService accountService, AccountDatabase accountDatabase, PaymentServiceClient paymentServiceClient) {
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    public AccountController(AccountService accountService, AccountDatabase accountDatabase, PaymentServiceClient paymentServiceClient, RabbitTemplate rabbitTemplate) {
         this.accountService = accountService;
         this.accountDatabase = accountDatabase;
         this.paymentServiceClient = paymentServiceClient;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
 
@@ -70,6 +75,14 @@ public class AccountController {
     public String notifyBalance(@RequestBody AccountDetails accountDetails){
         String balance = paymentServiceClient.getBalance(accountDetails);
         return balance;
+    }
+
+    @PostMapping("/sendToPaymentService")
+    public String sendBalance(@RequestBody AccountDetails accountDetails) {
+        String balanceMessage = String.format("Balance details for Account: %s, Account Type: %s, Balance: %.2f",
+                accountDetails.getAccountName(), accountDetails.getAccountType(), accountDetails.getAccountBalance());
+        rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE, "balanceQueue", balanceMessage);
+        return  balanceMessage;
     }
 
 
