@@ -1,4 +1,4 @@
-name: Java project workflow
+name: Java project workflo
 
 on:
   push:
