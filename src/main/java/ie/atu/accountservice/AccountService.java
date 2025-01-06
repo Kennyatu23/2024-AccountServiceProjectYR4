@@ -22,9 +22,9 @@ public class AccountService {
 
         this.accountDatabase = accountDatabase;
     }
-    public List<AccountDetails> createAccount(AccountDetails accountDetails) {
-        accountDatabase.save(accountDetails);
-        return accountDatabase.findAll();
+    public AccountDetails createAccount(AccountDetails accountDetails) {
+        return accountDatabase.save(accountDetails);
+        //return accountDatabase.findAll();
 
     }
     public Optional<AccountDetails> getAccountByID(String id) {

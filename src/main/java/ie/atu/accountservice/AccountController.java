@@ -34,9 +34,9 @@ public class AccountController {
 
 
     @PostMapping
-    public ResponseEntity<List<AccountDetails>> createAccount(@Valid @RequestBody AccountDetails accountDetails) {
-        accountDetailsList = accountService.createAccount(accountDetails);
-        return ResponseEntity.ok(accountDetailsList);
+    public ResponseEntity<AccountDetails> createAccount(@Valid @RequestBody AccountDetails accountDetails) {
+        AccountDetails newAccountDetails = accountService.createAccount(accountDetails);
+        return ResponseEntity.ok(newAccountDetails);
     }
 
     @PostMapping("/accountsRegister")
