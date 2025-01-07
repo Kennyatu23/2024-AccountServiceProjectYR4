@@ -47,9 +47,9 @@ public class AccountController {
     }
 
     @PutMapping("/{id}")
-      public  ResponseEntity<List<AccountDetails>>upDateAccount(@PathVariable String id, @RequestBody AccountDetails NewAccountDetails) {
+    public  ResponseEntity<List<AccountDetails>>upDateAccount(@PathVariable String id, @RequestBody AccountDetails NewAccountDetails) {
         accountDetailsList = accountService.upDateAccount(id, NewAccountDetails);
-      return ResponseEntity.ok(accountDetailsList);
+        return ResponseEntity.ok(accountDetailsList);
     }
 
     @GetMapping("/{id}")
