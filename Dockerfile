@@ -1,4 +1,5 @@
 FROM eclipse-temurin:17-alpine
+ENV PROFILE=docker
 
 #Set working directory inside the container
 WORKDIR /app
